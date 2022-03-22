@@ -104,9 +104,13 @@ select a.age, avg(b.rate) from t_user a join (select userid,rate from t_rating w
 
 ### 4.题目2
 
+```sql
+select 'M', b2.moviename, a2.avgrate, a2.total from (select a1.movieid , a1.avgrate, a1.total from (select a.movieid, avg(a.rate) as avgrate, count(b.userid) as total from t_rating a join t_user b on a.userid = b.userid and b.sex ='M' group by a.movieid) as a1  where a1.total > 50 order by avgrate desc  limit 10) a2 join t_movie b2 on a2.movieid = b2.movieid ;
+```
 
+运行结果：
 
-
+![](https://typora-mac-alpha.oss-cn-shanghai.aliyuncs.com/img/image-20220322215454657.png)
 
 
 
